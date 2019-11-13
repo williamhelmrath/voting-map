@@ -3,11 +3,53 @@ import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
 import ControlPanel from "./ControlPanel";
 import Pin from "./Pin";
 const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+const GOOGLE_TOKEN = process.env.REACT_APP_GOOGLE_TOKEN;
 const navStyle = {
   position: "absolute",
   top: 0,
   left: 0,
   padding: "10px"
+};
+
+const axios = require("axios");
+
+// async function getAddress(long, lat) {
+//   try {
+//     axios
+//       .get(
+//         "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+//           long +
+//           "," +
+//           lat +
+//           ".json?access_token=" +
+//           TOKEN
+//       )
+//       .then(res => {
+//         let address = res.data.features[0].place_name;
+//         console.log(address);
+//         return address;
+//       });
+//   } catch (error) {
+//     console.log(error);
+//     return null;
+//   }
+// }
+
+const getPollingPlace = address => {
+  try {
+    axios
+      .get(
+        // "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
+        //   address +
+        //   "&electionId=2000&key=" +
+        //   GOOGLE_TOKEN
+        "https://www.googleapis.com/civicinfo/v2/voterinfo?address=43503%20Cross%20Breeze%20Place%2C%20Ashburn%20VA&electionId=2000&key=" +
+          GOOGLE_TOKEN
+      )
+      .then(res => {
+        console.log(res.pollingLocations);
+      });
+  } catch (error) {}
 };
 
 export default class MapComp extends Component {
@@ -28,7 +70,8 @@ export default class MapComp extends Component {
         longitude: -96
       },
       events: {},
-      popupInfo: null
+      popupInfo: null,
+      address: ""
     };
   }
 
@@ -47,12 +90,40 @@ export default class MapComp extends Component {
 
   _onMarkerDragEnd = event => {
     this._logDragEvent("onDragEnd", event);
+    axios
+      .get(
+        "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+          event.lngLat[0] +
+          "," +
+          event.lngLat[1] +
+          ".json?access_token=" +
+          TOKEN
+      )
+      .then(res => {
+        let address = res.data.features[0].place_name;
+        this.setState({
+          address: address
+        });
+      });
     this.setState({
       marker: {
         longitude: event.lngLat[0],
         latitude: event.lngLat[1]
       }
     });
+    console.log(this.state.address);
+    axios
+      .get(
+        // "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
+        //   address +
+        //   "&electionId=2000&key=" +
+        //   GOOGLE_TOKEN
+        "https://www.googleapis.com/civicinfo/v2/voterinfo?address=43503%20Cross%20Breeze%20Place%2C%20Ashburn%20VA&electionId=2000&key=" +
+          GOOGLE_TOKEN
+      )
+      .then(res => {
+        console.log(res.pollingLocations);
+      });
   };
 
   _renderPopup() {
@@ -63,14 +134,13 @@ export default class MapComp extends Component {
         longitude={this.state.marker.longitude}
         latitude={this.state.marker.latitude}
         closeOnClick={false}
-        onClose={() => this.setState({ popupInfo: null })}
+        onClose={() => this.setState({ popupInfo: "" })}
       >
         {this.state.popupInfo}
       </Popup>
     );
   }
   render() {
-    console.log(process.env);
     const { viewport, marker } = this.state;
     return (
       <MapGL
@@ -91,11 +161,7 @@ export default class MapComp extends Component {
             onClick={() =>
               this.setState({
                 popupInfo:
-                  "The Voting Location for " +
-                  Math.round(this.state.marker.longitude) +
-                  ", " +
-                  Math.round(this.state.marker.latitude) +
-                  " is: "
+                  "The Voting Location for " + this.state.address + " is: "
               })
             }
           />
