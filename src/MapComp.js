@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
 import ControlPanel from "./ControlPanel";
 import Pin from "./Pin";
+// import { Dimensions } from 'react-native'
 const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const navStyle = {
   position: "absolute",
   top: 0,
   left: 0,
-  padding: "10px"
+  padding: "10px",
 };
 
 export default class MapComp extends Component {
@@ -20,8 +21,8 @@ export default class MapComp extends Component {
         zoom: 2.5,
         bearing: 0,
         pitch: 1,
-        width: 1200,
-        height: 600
+        height: 700,
+        width: 'wrap'
       },
       marker: {
         latitude: 40,

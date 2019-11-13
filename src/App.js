@@ -13,9 +13,10 @@ export default class App extends Component {
         <div
           className="App"
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
+            // display: "flex",
+            alignItems: "stretch",
+            justifyContent: "center",
+            alignSelf: "stretch"
           }}
         >
           <MapComp />
