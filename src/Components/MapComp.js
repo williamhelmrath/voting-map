@@ -13,6 +13,9 @@ const navStyle = {
 
 const axios = require("axios");
 
+/*
+Trying to make these functions asynchronous so they work in the body of the Component. I've just stuck them into the component for now, hopefully I'll figure it out.
+*/
 // async function getAddress(long, lat) {
 //   try {
 //     axios
@@ -35,22 +38,22 @@ const axios = require("axios");
 //   }
 // }
 
-const getPollingPlace = address => {
-  try {
-    axios
-      .get(
-        // "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
-        //   address +
-        //   "&electionId=2000&key=" +
-        //   GOOGLE_TOKEN
-        "https://www.googleapis.com/civicinfo/v2/voterinfo?address=43503%20Cross%20Breeze%20Place%2C%20Ashburn%20VA&electionId=2000&key=" +
-          GOOGLE_TOKEN
-      )
-      .then(res => {
-        console.log(res.pollingLocations);
-      });
-  } catch (error) {}
-};
+// const getPollingPlace = address => {
+//   try {
+//     axios
+//       .get(
+//         // "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
+//         //   address +
+//         //   "&electionId=2000&key=" +
+//         //   GOOGLE_TOKEN
+//         "https://www.googleapis.com/civicinfo/v2/voterinfo?address=43503%20Cross%20Breeze%20Place%2C%20Ashburn%20VA&electionId=2000&key=" +
+//           GOOGLE_TOKEN
+//       )
+//       .then(res => {
+//         console.log(res.pollingLocations[0].locationName);
+//       });
+//   } catch (error) {}
+// };
 
 export default class MapComp extends Component {
   constructor(props) {
@@ -88,8 +91,11 @@ export default class MapComp extends Component {
     });
   }
 
+  /**This happens when the user drops the red marker on a location */
   _onMarkerDragEnd = event => {
     this._logDragEvent("onDragEnd", event);
+
+    /**Check to see if there is a street address tied to the current location of the pin*/
     axios
       .get(
         "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
@@ -100,29 +106,51 @@ export default class MapComp extends Component {
           TOKEN
       )
       .then(res => {
-        let address = res.data.features[0].place_name;
-        this.setState({
-          address: address
-        });
+        //If there is no valid address, output that to the popup info
+        if (res.data.features.length === 0) {
+          this.setState({
+            popupInfo: "This is not a valid address"
+          });
+        } else {
+          let address = res.data.features[0].place_name;
+          this.setState({
+            address: address
+          });
+
+          this.setState({
+            marker: {
+              longitude: event.lngLat[0],
+              latitude: event.lngLat[1]
+            }
+          });
+        }
       });
-    this.setState({
-      marker: {
-        longitude: event.lngLat[0],
-        latitude: event.lngLat[1]
-      }
-    });
-    console.log(this.state.address);
+
+    /**Check for the polling location of the found address */
     axios
       .get(
-        // "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
-        //   address +
-        //   "&electionId=2000&key=" +
-        //   GOOGLE_TOKEN
-        "https://www.googleapis.com/civicinfo/v2/voterinfo?address=43503%20Cross%20Breeze%20Place%2C%20Ashburn%20VA&electionId=2000&key=" +
+        "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
+          this.state.address +
+          "&electionId=2000&key=" +
           GOOGLE_TOKEN
       )
       .then(res => {
-        console.log(res.pollingLocations);
+        //If no polling location data exists, output error in the popup
+        if (!res.data.pollingLocations) {
+          this.setState({
+            popupInfo: "There is no voting information for this address."
+          });
+        } else {
+          let pollingPlace = res.data.pollingLocations[0].address.locationName;
+          this.setState({
+            popupInfo:
+              "The polling place for " +
+              this.state.address +
+              " is " +
+              pollingPlace
+          });
+        }
+        console.log(this.state.address);
       });
   };
 
@@ -156,15 +184,7 @@ export default class MapComp extends Component {
           draggable
           onDragEnd={this._onMarkerDragEnd}
         >
-          <Pin
-            size={25}
-            onClick={() =>
-              this.setState({
-                popupInfo:
-                  "The Voting Location for " + this.state.address + " is: "
-              })
-            }
-          />
+          <Pin size={25} />
         </Marker>
 
         <div className="nav" style={navStyle}>
