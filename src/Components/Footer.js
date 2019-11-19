@@ -1,5 +1,4 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -24,7 +23,7 @@ function Copyright() {
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: theme.palette.common.blue,
     },
     ul: {
       margin: 0,
