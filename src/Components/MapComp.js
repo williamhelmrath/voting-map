@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
-import ControlPanel from "./ControlPanel";
 import Pin from "./Pin";
 const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const GOOGLE_TOKEN = process.env.REACT_APP_GOOGLE_TOKEN;
@@ -12,48 +11,6 @@ const navStyle = {
 };
 
 const axios = require("axios");
-
-/*
-Trying to make these functions asynchronous so they work in the body of the Component. I've just stuck them into the component for now, hopefully I'll figure it out.
-*/
-// async function getAddress(long, lat) {
-//   try {
-//     axios
-//       .get(
-//         "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
-//           long +
-//           "," +
-//           lat +
-//           ".json?access_token=" +
-//           TOKEN
-//       )
-//       .then(res => {
-//         let address = res.data.features[0].place_name;
-//         console.log(address);
-//         return address;
-//       });
-//   } catch (error) {
-//     console.log(error);
-//     return null;
-//   }
-// }
-
-// const getPollingPlace = address => {
-//   try {
-//     axios
-//       .get(
-//         // "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
-//         //   address +
-//         //   "&electionId=2000&key=" +
-//         //   GOOGLE_TOKEN
-//         "https://www.googleapis.com/civicinfo/v2/voterinfo?address=43503%20Cross%20Breeze%20Place%2C%20Ashburn%20VA&electionId=2000&key=" +
-//           GOOGLE_TOKEN
-//       )
-//       .then(res => {
-//         console.log(res.pollingLocations[0].locationName);
-//       });
-//   } catch (error) {}
-// };
 
 export default class MapComp extends Component {
   constructor(props) {
@@ -168,6 +125,7 @@ export default class MapComp extends Component {
       </Popup>
     );
   }
+
   render() {
     const { viewport, marker } = this.state;
     return (
@@ -190,10 +148,6 @@ export default class MapComp extends Component {
         <div className="nav" style={navStyle}>
           <NavigationControl onViewportChange={this._updateViewport} />
         </div>
-        <ControlPanel
-          containerComponent={this.props.containerComponent}
-          events={this.state.events}
-        />
       </MapGL>
     );
   }
