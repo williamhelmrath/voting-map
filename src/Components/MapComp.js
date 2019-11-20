@@ -22,8 +22,8 @@ export default class MapComp extends Component {
         zoom: 2.5,
         bearing: 0,
         pitch: 1,
-        width: 1200,
-        height: 600
+        width: 'wrap',
+        height: 700
       },
       marker: {
         latitude: 40,
