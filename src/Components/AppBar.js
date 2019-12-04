@@ -1,6 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +6,9 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import PublicIcon from '@material-ui/icons/Public';
+import {
+  AppBar
+} from "@material-ui/core";
 
 function Copyright() {
   return (
@@ -22,14 +23,7 @@ function Copyright() {
   );
 }
 
-import {
-  CssBaseline,
-  Toolbar,
-  Typography,
-  Link,
-  Container,
-  AppBar
-} from "@material-ui/core";
+
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -99,8 +93,8 @@ export default function Pricing() {
             noWrap
             className={classes.toolbarTitle}
           >
-            VOTING MAP
-          </Typography> <PublicIcon></PublicIcon>
+            VOTING MAP <PublicIcon></PublicIcon>
+          </Typography> 
           <nav>
             <Link
               variant="button"
