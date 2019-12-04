@@ -7,13 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import PublicIcon from '@material-ui/icons/Public';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © HackCville'}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Your Website 
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -79,7 +80,7 @@ export default function Pricing() {
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            VOTING MAP
+            VOTING MAP <PublicIcon></PublicIcon>
           </Typography>
           <nav>
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
@@ -104,13 +105,20 @@ export default function Pricing() {
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Welcome
+          Welcome 
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" component="p">
-          Interactive map that allows you to check voting location information worldwide!
+          Interactive map that allows you to check voting location information near you nationwide!
         </Typography>
       </Container>
       {/* End hero unit */}
+
+      <SearchBar
+        style={{
+          margin: '0 auto',
+          maxWidth: 800
+        }}
+      />
 
     </React.Fragment>
   );

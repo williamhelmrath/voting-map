@@ -10,10 +10,7 @@ import Box from '@material-ui/core/Box';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © HackCville'}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
+      {'Copyright © HackCville '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -71,16 +68,16 @@ const useStyles = makeStyles(theme => ({
 
 const footers = [
   {
-    title: 'Company',
+    title: 'HackCville',
     description: ['Team', 'History', 'Contact us', 'Locations'],
   },
   {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+    title: 'Google API',
+    description: ['About', 'Usage', 'Team feature', 'Developer stuff'],
   },
   {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+    title: 'Project',
+    description: ['Team Feature', 'Developer Stuff', 'Environments Used'],
   },
   {
     title: 'Legal',
