@@ -22,7 +22,7 @@ export default class MapComp extends Component {
         zoom: 2.5,
         bearing: 0,
         pitch: 1,
-        width: 'wrap',
+        width: "wrap",
         height: 700
       },
       marker: {
@@ -35,11 +35,22 @@ export default class MapComp extends Component {
     };
   }
 
-  _updateViewport = viewport => {
+  componentDidUpdate(prevProps) {
+    if (prevProps.searchBarTerm !== this.props.searchBarTerm) {
+      //alert("hi");
+      this.setState({ address: this.props.searchBarTerm }, () => {
+        this.forwardGeocode();
+      });
+    }
+  }
+
+  forwardGeocode = () => {};
+
+  updateViewport = viewport => {
     this.setState({ viewport });
   };
 
-  _logDragEvent(name, event) {
+  logDragEvent(name, event) {
     this.setState({
       events: {
         ...this.state.events,
@@ -49,8 +60,8 @@ export default class MapComp extends Component {
   }
 
   /**This happens when the user drops the red marker on a location */
-  _onMarkerDragEnd = event => {
-    this._logDragEvent("onDragEnd", event);
+  onMarkerDragEnd = event => {
+    this.logDragEvent("onDragEnd", event);
 
     /**Check to see if there is a street address tied to the current location of the pin*/
     axios
@@ -111,7 +122,7 @@ export default class MapComp extends Component {
       });
   };
 
-  _renderPopup() {
+  renderPopup() {
     return (
       <Popup
         tipSize={5}
@@ -135,18 +146,18 @@ export default class MapComp extends Component {
         mapboxApiAccessToken={TOKEN}
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        {this._renderPopup()}
+        {this.renderPopup()}
         <Marker
           longitude={marker.longitude}
           latitude={marker.latitude}
           draggable
-          onDragEnd={this._onMarkerDragEnd}
+          onDragEnd={this.onMarkerDragEnd}
         >
           <Pin size={25} />
         </Marker>
 
         <div className="nav" style={navStyle}>
-          <NavigationControl onViewportChange={this._updateViewport} />
+          <NavigationControl onViewportChange={this.updateViewport} />
         </div>
       </MapGL>
     );
