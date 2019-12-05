@@ -28,6 +28,9 @@ const pollLocation = () => {
             >
                 <MapComp searchBarTerm={state.textFieldAddress} />
             </div>
+
+            {/* <div class="static_image"></div> */}
+            
         </div>
     );
 };

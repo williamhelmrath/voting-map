@@ -32,8 +32,6 @@ export default class App extends Component {
           </div>
         </BrowserRouter>
 
-        {/* <div class="static_image"></div> */}
-
         <Footer />
       </div>
     );

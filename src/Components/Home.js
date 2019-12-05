@@ -17,8 +17,6 @@ const Home = () => {
         <div>
 
             {/* add parallax or some cool image stuffs :0 */}
-
-            <h1>"Home" page</h1>
             <Container maxWidth="sm" component="main" className={classes.heroContent}>
                 <Typography
                     component="h1"
