@@ -2,17 +2,25 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { Parallax, Background } from 'react-parallax';
+import { Parallax } from 'react-parallax';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
-   textContent: {
-       padding: theme.spacing(27,0,6),
-   },
+    textContent: {
+        padding: theme.spacing(27,0,6),
+    },
 
-   parallaxContent: {
-    padding: theme.spacing(0,0,6)
-   }
+    parallaxContent: {
+        padding: theme.spacing(0,0,6)
+    },
 
+    button: {
+        margin: theme.spacing(1),
+    },
+
+    input: {
+        display: 'none',
+    },
 }));
 
 const Home = () => {
@@ -32,7 +40,6 @@ const Home = () => {
                 >
                     <Container maxWidth="sm" component="main" className={classes.textContent}>
                         <Typography
-                            // component="h1"
                             variant="h1"
                             align="center"
                             color="inherit"
@@ -44,7 +51,7 @@ const Home = () => {
                             gutterBottom
                         >
                             Welcome
-                    </Typography>
+                        </Typography>
 
                         <Typography
                             variant="h5"
@@ -58,11 +65,21 @@ const Home = () => {
                         }}
                         >
                         Try the interactive map that allows you to check voting location information
-                            across the United States!
-                    </Typography>
+                                across the United States!
+                                
+                        </Typography>
 
+                        <Button 
+                            variant="contained" 
+                            className={classes.button}
+                            href="/map"
+                        >
+                            Start Here
+                        </Button>
+                        
                     </Container>
-                    
+
+                
                     <div style={{ height: '300px' }} />
                 </Parallax>
             </div>
