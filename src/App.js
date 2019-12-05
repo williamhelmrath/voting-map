@@ -4,8 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 // UI/CSS imports
 import AppBar from "./Components/AppBar.js";
 import Footer from "./Components/Footer.js";
-// import MapComp from "./Components/MapComp.js";
-// import SearchBar from "./Components/SearchBar.js";
+import ParallaxComp from "./Components/ParallaxComp.js";
 import "./App.css";
 
 // router imports
@@ -21,6 +20,8 @@ export default class App extends Component {
     return (
       <div>
         <AppBar />
+
+        {/* <ParallaxComp /> */}
 
         <BrowserRouter>
           <div>
