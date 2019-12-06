@@ -1,29 +1,25 @@
 import React from "react";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import PublicIcon from '@material-ui/icons/Public';
-import {
-  AppBar
-} from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import PublicIcon from "@material-ui/icons/Public";
+import { AppBar } from "@material-ui/core";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © HackCville'}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website 
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © HackCville'}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -94,7 +90,7 @@ export default function Pricing() {
             className={classes.toolbarTitle}
           >
             VOTING MAP <PublicIcon></PublicIcon>
-          </Typography> 
+          </Typography>
           <nav>
             <Link
               variant="button"

@@ -17,9 +17,9 @@ export default class MapComp extends Component {
     super(props);
     this.state = {
       viewport: {
-        latitude: 40,
+        latitude: 37.5,
         longitude: -96,
-        zoom: 2.5,
+        zoom: 3.8,
         bearing: 0,
         pitch: 1,
         width: "wrap",
@@ -30,7 +30,7 @@ export default class MapComp extends Component {
         longitude: -96
       },
       events: {},
-      popupInfo: null,
+      popupInfo: "Drag me!",
       address: ""
     };
   }
@@ -57,6 +57,17 @@ export default class MapComp extends Component {
         let lat = res.data.features[0].center[1];
         let event = { lngLat: [long, lat] };
         this.onMarkerDragEnd(event);
+
+        let updatedViewport = {
+          latitude: event.lngLat[1],
+          longitude: event.lngLat[0],
+          zoom: 10,
+          bearing: 0,
+          pitch: 1,
+          width: "wrap",
+          height: 700
+        };
+        this.updateViewport(updatedViewport);
       });
   };
 
@@ -94,55 +105,48 @@ export default class MapComp extends Component {
             popupInfo: "This is not a valid address"
           });
         } else {
-          let address = res.data.features[0].place_name;
-          this.setState({
-            address: address,
+          //let address = res.data.features[0].place_name;
+          this.setState(
+            {
+              address: res.data.features[0].place_name,
 
-            marker: {
-              longitude: event.lngLat[0],
-              latitude: event.lngLat[1]
+              marker: {
+                longitude: event.lngLat[0],
+                latitude: event.lngLat[1]
+              }
+            },
+            () => {
+              axios
+                .get(
+                  "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
+                    this.state.address +
+                    "&electionId=2000&key=" +
+                    GOOGLE_TOKEN
+                )
+                .then(res => {
+                  //If no polling location data exists, output error in the popup
+                  if (!res.data.pollingLocations) {
+                    this.setState({
+                      popupInfo:
+                        "There is no voting information for this address."
+                    });
+                  } else {
+                    this.setState({
+                      popupInfo:
+                        "The polling place for " +
+                        this.state.address +
+                        " is " +
+                        res.data.pollingLocations[0].address.locationName
+                    });
+                  }
+                  console.log(this.state.address);
+                });
             }
-          });
+          );
         }
-
-        let updatedViewport = {
-          latitude: event.lngLat[1],
-          longitude: event.lngLat[0],
-          zoom: 10,
-          bearing: 0,
-          pitch: 1,
-          width: "wrap",
-          height: 700
-        };
-        this.updateViewport(updatedViewport);
       });
 
     /**Check for the polling location of the found address */
-    axios
-      .get(
-        "https://www.googleapis.com/civicinfo/v2/voterinfo?address=" +
-          this.state.address +
-          "&electionId=2000&key=" +
-          GOOGLE_TOKEN
-      )
-      .then(res => {
-        //If no polling location data exists, output error in the popup
-        if (!res.data.pollingLocations) {
-          this.setState({
-            popupInfo: "There is no voting information for this address."
-          });
-        } else {
-          let pollingPlace = res.data.pollingLocations[0].address.locationName;
-          this.setState({
-            popupInfo:
-              "The polling place for " +
-              this.state.address +
-              " is " +
-              pollingPlace
-          });
-        }
-        console.log(this.state.address);
-      });
   };
 
   renderPopup() {
