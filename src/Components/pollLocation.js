@@ -1,38 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
+
+// UI/CSS imports
 import MapComp from "./MapComp.js";
 import SearchBar from "./SearchBar.js";
 
-const pollLocation = () => {
+export default class pollLocation extends Component {
 
-    let state = {
-        textFieldAddress: "null"
-      };
+  state = {
+    textFieldAddress: "null"
+  };
 
-    let callbackFunction = childData => {
-        this.setState({ textFieldAddress: childData }, () => {
-        });
-      };
+  callbackFunction = childData => {
+    this.setState({ textFieldAddress: childData });
+  };
 
+  render() {
     return (
-        <div>
-            <h1>"MapBox" page</h1>
+      <div>
 
-            <SearchBar parentCallback={callbackFunction}/> <br></br>
+        <SearchBar parentCallback={this.callbackFunction} />
 
-            <div
-                style={{
-                    alignItems: "stretch",
-                    justifyContent: "center",
-                    alignSelf: "stretch"
-                }}
-            >
-                <MapComp searchBarTerm={state.textFieldAddress} />
-            </div>
-
-            {/* <div class="static_image"></div> */}
-            
+        <div
+          style={{
+            alignItems: "stretch",
+            justifyContent: "center",
+            alignSelf: "stretch"
+          }}
+        >
+          <MapComp searchBarTerm={this.state.textFieldAddress} />
         </div>
+      </div>
     );
-};
-
-export default pollLocation;
+  }
+}
