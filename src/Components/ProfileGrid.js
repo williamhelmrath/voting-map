@@ -179,7 +179,7 @@ export default function SpacingGrid() {
                                     color="textSecondary" 
                                     component="p"
                                 >
-                                    <b>Year: </b> Fourth Year ???
+                                    <b>Year: </b> Fourth Year
                                 </Typography>
                                 <Typography 
                                     variant="body2" 
@@ -246,7 +246,7 @@ export default function SpacingGrid() {
                                     color="textSecondary" 
                                     component="p"
                                 >
-                                    <b>Role: </b> Unsure ???
+                                    Unable to come :-(
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
