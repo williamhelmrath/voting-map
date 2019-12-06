@@ -37,14 +37,28 @@ export default class MapComp extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.searchBarTerm !== this.props.searchBarTerm) {
-      //alert("hi");
       this.setState({ address: this.props.searchBarTerm }, () => {
         this.forwardGeocode();
       });
     }
   }
 
-  forwardGeocode = () => {};
+  forwardGeocode = () => {
+    axios
+      .get(
+        "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+          this.state.address +
+          ".json?access_token=" +
+          TOKEN
+      )
+      .then(res => {
+        console.log(res);
+        let long = res.data.features[0].center[0];
+        let lat = res.data.features[0].center[1];
+        let event = { lngLat: [long, lat] };
+        this.onMarkerDragEnd(event);
+      });
+  };
 
   updateViewport = viewport => {
     this.setState({ viewport });
@@ -82,16 +96,25 @@ export default class MapComp extends Component {
         } else {
           let address = res.data.features[0].place_name;
           this.setState({
-            address: address
-          });
+            address: address,
 
-          this.setState({
             marker: {
               longitude: event.lngLat[0],
               latitude: event.lngLat[1]
             }
           });
         }
+
+        let updatedViewport = {
+          latitude: event.lngLat[1],
+          longitude: event.lngLat[0],
+          zoom: 10,
+          bearing: 0,
+          pitch: 1,
+          width: "wrap",
+          height: 700
+        };
+        this.updateViewport(updatedViewport);
       });
 
     /**Check for the polling location of the found address */

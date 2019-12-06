@@ -12,9 +12,7 @@ export default class App extends Component {
   };
 
   callbackFunction = childData => {
-    this.setState({ textFieldAddress: childData }, () => {
-      //alert(this.state.textFieldAddress);
-    });
+    this.setState({ textFieldAddress: childData });
   };
 
   render() {
