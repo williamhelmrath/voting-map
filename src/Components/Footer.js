@@ -13,9 +13,9 @@ import {
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © HackCville"}
+      {"Copyright © HackCville "}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Source A Fall 
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -36,29 +36,8 @@ const useStyles = makeStyles(theme => ({
       listStyle: "none"
     }
   },
-  appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`
-  },
-  toolbar: {
-    flexWrap: "wrap"
-  },
-  toolbarTitle: {
-    flexGrow: 1
-  },
   link: {
     margin: theme.spacing(1, 1.5)
-  },
-  heroContent: {
-    padding: theme.spacing(8, 0, 6)
-  },
-  cardHeader: {
-    backgroundColor: theme.palette.grey[200]
-  },
-  cardPricing: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "baseline",
-    marginBottom: theme.spacing(2)
   },
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
@@ -66,30 +45,30 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
     [theme.breakpoints.up("sm")]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6)
+      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(4)
     }
   }
 }));
 
-const footers = [
-  {
-    title: 'HackCville',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Google API',
-    description: ['About', 'Usage', 'Team feature', 'Developer stuff'],
-  },
-  {
-    title: 'Project',
-    description: ['Team Feature', 'Developer Stuff', 'Environments Used'],
-  },
-  {
-    title: "Legal",
-    description: ["Privacy policy", "Terms of use"]
-  }
-];
+// const footers = [
+//   {
+//     title: 'HackCville',
+//     description: ['Team', 'History', 'Contact us', 'Locations'],
+//   },
+//   {
+//     title: 'Google API',
+//     description: ['About', 'Usage', 'Team feature', 'Developer stuff'],
+//   },
+//   {
+//     title: 'Project',
+//     description: ['Team Feature', 'Developer Stuff', 'Environments Used'],
+//   },
+//   {
+//     title: "Legal",
+//     description: ["Privacy policy", "Terms of use"]
+//   }
+// ];
 
 export default function Pricing() {
   const classes = useStyles();
@@ -100,7 +79,7 @@ export default function Pricing() {
 
       {/* Footer */}
       <Container maxWidth="md" component="footer" className={classes.footer}>
-        <Grid container spacing={4} justify="space-evenly">
+        {/* <Grid container spacing={4} justify="space-evenly">
           {footers.map(footer => (
             <Grid item xs={6} sm={3} key={footer.title}>
               <Typography variant="h6" color="textPrimary" gutterBottom>
@@ -117,7 +96,7 @@ export default function Pricing() {
               </ul>
             </Grid>
           ))}
-        </Grid>
+        </Grid> */}
         <Box mt={5}>
           <Copyright />
         </Box>
