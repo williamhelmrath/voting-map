@@ -12,7 +12,6 @@ import Group from "./Components/Group.js";
 import pollLocation from "./Components/pollLocation.js";
 
 export default class App extends Component {
-
   render() {
     return (
       <div>

@@ -1,26 +1,12 @@
 import React from "react";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import PublicIcon from '@material-ui/icons/Public';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Toolbar from "@material-ui/core/Toolbar";
+import Link from "@material-ui/core/Link";
+import { makeStyles } from "@material-ui/core/styles";
+import PublicIcon from "@material-ui/icons/Public";
 import AppBar from "@material-ui/core/AppBar";
-import PeopleIcon from '@material-ui/icons/People';
-import PinDropIcon from '@material-ui/icons/PinDrop';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © HackCville'}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website 
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import PeopleIcon from "@material-ui/icons/People";
+import PinDropIcon from "@material-ui/icons/PinDrop";
 
 const useStyles = makeStyles(theme => ({
   "@global": {

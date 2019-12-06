@@ -6,7 +6,6 @@ import {
   Container,
   Link,
   Typography,
-  Grid,
   CssBaseline
 } from "@material-ui/core";
 
@@ -15,7 +14,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © HackCville "}
       <Link color="inherit" href="https://material-ui.com/">
-        Source A Fall 
+        Source A Fall
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
