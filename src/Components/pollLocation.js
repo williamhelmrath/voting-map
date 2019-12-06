@@ -24,7 +24,7 @@ export default class pollLocation extends Component {
             color="textPrimary"
             gutterBottom
           >
-            Find Your Poll Location
+            Find Your Polling Location
           </Typography>
           <Typography
             variant="h5"

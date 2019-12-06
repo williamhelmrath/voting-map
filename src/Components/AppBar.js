@@ -63,7 +63,7 @@ export default function Pricing() {
               href="/map"
               className={classes.link}
             >
-              Find Poll Location <PinDropIcon></PinDropIcon>
+              Find Polling Location <PinDropIcon></PinDropIcon>
             </Link>
             <Link
               variant="button"
