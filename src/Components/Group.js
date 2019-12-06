@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import ProfileGrid from './ProfileGrid.js';
-import { Parallax } from 'react-parallax';
 
 const useStyles = makeStyles(theme => ({
     heroContent: {
