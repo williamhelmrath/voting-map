@@ -157,7 +157,7 @@ export default function SpacingGrid() {
                             <CardMedia
                                 component="img"
                                 height="220"
-                                image={require('./Images/jaz.jpg')}
+                                image={require('./Images/baby-yoda.jpg')}
                             />
                             <CardContent>
                                 <Typography 
@@ -172,21 +172,21 @@ export default function SpacingGrid() {
                                     color="textSecondary" 
                                     component="p"
                                 >
-                                    <b>Major: </b> ???
+                                    <b>Major: </b> Economics | <b>Minor: </b> Mathematics
                                 </Typography>
                                 <Typography 
                                     variant="body2" 
                                     color="textSecondary" 
                                     component="p"
                                 >
-                                    <b>Year: </b> ???
+                                    <b>Year: </b> Fourth Year ???
                                 </Typography>
                                 <Typography 
                                     variant="body2" 
                                     color="textSecondary" 
                                     component="p"
                                 >
-                                    <b>Role: </b> ???
+                                    <b>Role: </b> Presentation and Ideas
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -194,14 +194,14 @@ export default function SpacingGrid() {
                             <Button 
                                 size="small" 
                                 color="primary" 
-                                href=""
+                                href="https://www.linkedin.com/in/avery-burton-6990b3119/"
                             >
                                 LinkedIn
                             </Button>
                             <Button 
                                 size="small" 
                                 color="primary" 
-                                href=""
+                                href="https://github.com/aburton213"
                             >
                                 Github
                             </Button>
@@ -232,8 +232,7 @@ export default function SpacingGrid() {
                                     color="textSecondary" 
                                     component="p"
                                 >
-                                    <b>Major: </b>Computer Science <br></br>
-                                    <b>Minor: </b>Applied Mathematics
+                                    <b>Major: </b>Computer Science | <b>Minor: </b>Applied Math
                                 </Typography>
                                 <Typography 
                                     variant="body2" 
@@ -247,7 +246,7 @@ export default function SpacingGrid() {
                                     color="textSecondary" 
                                     component="p"
                                 >
-                                    <b>Role: </b> ???
+                                    <b>Role: </b> Unsure ???
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -262,7 +261,7 @@ export default function SpacingGrid() {
                             <Button 
                                 size="small" 
                                 color="primary" 
-                                href="https://github.com/williamhelmrath"
+                                href="https://github.com/renzoguevarra"
                             >
                                 Github
                             </Button>
