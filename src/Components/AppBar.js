@@ -81,26 +81,10 @@ export default function Pricing() {
             <Link
               variant="button"
               color="textPrimary"
-              href="/about"
-              className={classes.link}
-            >
-              About
-            </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
               href="/group"
               className={classes.link}
             >
               Group Members
-            </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="/hackcville"
-              className={classes.link}
-            >
-              HackCville
             </Link>
           </nav>
         </Toolbar>

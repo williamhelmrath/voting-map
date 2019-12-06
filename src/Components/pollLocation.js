@@ -3,7 +3,6 @@ import MapComp from "./MapComp.js";
 import SearchBar from "./SearchBar.js";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from "@material-ui/core/styles";
 
 export default class pollLocation extends Component {
 
