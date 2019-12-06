@@ -4,9 +4,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import PublicIcon from '@material-ui/icons/Public';
 import AppBar from "@material-ui/core/AppBar";
+import PeopleIcon from '@material-ui/icons/People';
+import PinDropIcon from '@material-ui/icons/PinDrop';
 
 function Copyright() {
   return (
@@ -76,7 +77,7 @@ export default function Pricing() {
               href="/map"
               className={classes.link}
             >
-              Find Poll Location
+              Find Poll Location <PinDropIcon></PinDropIcon>
             </Link>
             <Link
               variant="button"
@@ -84,7 +85,7 @@ export default function Pricing() {
               href="/group"
               className={classes.link}
             >
-              Group Members
+              Group Members <PeopleIcon></PeopleIcon>
             </Link>
           </nav>
         </Toolbar>
