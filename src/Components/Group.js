@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import ProfileGrid from './ProfileGrid.js';
 
 const useStyles = makeStyles(theme => ({
     heroContent: {
@@ -23,15 +24,18 @@ const Group = () => {
                 >
                     Group Members
                 </Typography>
-                <Typography
+                {/* <Typography
                     variant="h5"
                     align="center"
                     color="textSecondary"
                     component="p"
                 >
                     Include: basic information about Avery Burton, Jazlene Guevarra, Renzo Guevarra, William Helmrath with pictures!
-                </Typography>
+                </Typography> */}
             </Container>
+
+            <ProfileGrid />
+            
         </div>
     );
 };
